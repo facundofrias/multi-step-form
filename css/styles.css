@@ -5,4 +5,61 @@
   font-family: "Ubuntu", sans-serif;
 }
 
+body {
+  background-color: hsl(217deg, 100%, 97%);
+}
+
+ol,
+ul {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.sidebar-container {
+  height: 160px;
+  background-image: url(../assets/images/bg-sidebar-mobile.svg);
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar {
+  padding-top: 30px;
+}
+.navbar__ul {
+  display: flex;
+  flex-direction: row;
+}
+.navbar__a {
+  margin: 5px;
+  padding: 5px 10px;
+  color: white;
+  font-weight: 500;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 15px;
+}
+.navbar .selected-step {
+  color: black;
+  background-color: hsl(206deg, 94%, 87%);
+  border: 1px solid hsl(206deg, 94%, 87%);
+}
+
+.form__container {
+  height: 20rem;
+  width: 90%;
+  margin: 0 auto;
+  background-color: hsl(0deg, 0%, 100%);
+  border-radius: 7px;
+  position: relative;
+  top: -4rem;
+}
+
 /*# sourceMappingURL=styles.css.map */

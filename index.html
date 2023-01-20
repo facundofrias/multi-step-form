@@ -19,7 +19,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
-  <style>
+  <!-- <style>
     .attribution {
       font-size: 11px;
       text-align: center;
@@ -28,18 +28,28 @@
     .attribution a {
       color: hsl(228, 45%, 44%);
     }
-  </style>
+  </style> -->
 </head>
 
 <body>
   <form action="">
     <div class="sidebar-container">
-      <img src="./assets/images/bg-sidebar-mobile.svg" alt="">
-      <nav>
-        <button disabled>1</button>
-        <button>2</button>
-        <button disabled>3</button>
-        <button disabled>4</button>
+      <!-- <img src="./assets/images/bg-sidebar-mobile.svg" alt=""> -->
+      <nav class="navbar">
+        <ul class="navbar__ul">
+          <li class="navbar__li">
+            <a class="navbar__a selected-step" href="">1</a>
+          </li>
+          <li class="navbar__li">
+            <a class="navbar__a" href="">2</a>
+          </li>
+          <li class="navbar__li">
+            <a class="navbar__a" href="">3</a>
+          </li>
+          <li class="navbar__li">
+            <a class="navbar__a" href="">4</a>
+          </li>
+        </ul>
       </nav>
 
       <!-- Step 1
@@ -53,6 +63,12 @@
 
       Step 4
       Summary -->
+    </div>
+    <div class="form__container">
+      <p>Personal info</p>
+      <p>Please provide your name, email address, and phone number.</p>
+      <label for="name">Name</label>
+      <input type="text" name="" id="name">
     </div>
   </form>
   <!-- Sidebar start -->
