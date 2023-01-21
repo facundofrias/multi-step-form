@@ -32,7 +32,7 @@
 </head>
 
 <body>
-  <form action="">
+  <form class="form" action="">
     <div class="sidebar-container">
       <!-- <img src="./assets/images/bg-sidebar-mobile.svg" alt=""> -->
       <nav class="navbar">
@@ -64,11 +64,63 @@
       Step 4
       Summary -->
     </div>
-    <div class="form__container">
-      <p>Personal info</p>
-      <p>Please provide your name, email address, and phone number.</p>
-      <label for="name">Name</label>
-      <input type="text" name="" id="name">
+    <div class="data" style="display: none;">
+      <div class="data__field-container">
+        <p class="data__title">Personal info</p>
+        <p class="data__description">Please provide your name, email address, and phone number.</p>
+      </div>
+      <div class="data__field-container">
+        <label for="name">Name</label>
+        <input type="text" name="" id="name" placeholder="e.g. Stephen King">
+      </div>
+      <div class="data__field-container">
+        <label for="email">Email Address</label>
+        <input type="email" name="" id="email" placeholder="e.g. stephenking@lorem.com">
+      </div>
+      <div class="data__field-container">
+        <label for="name">Phone Number</label>
+        <input type="text" name="" id="name" placeholder="e.g. +1 234 567 890">
+      </div>
+    </div>
+    <div class="data">
+      <div class="data__field-container">
+        <p class="data__title">Select your plan</p>
+        <p class="data__description">You have the option of monthly or yearly billing.</p>
+      </div>
+      <div class="data__plan-container">
+        <img src="./assets/images/icon-arcade.svg" alt="Arcade mode image">
+        <label class="mode-plan" for="arcade">Arcade</label>
+        <span class="cost-plan">$9/mo</span>
+        <input type="radio" name="" id="arcade">
+      </div>
+      <div class="data__plan-container selected-plan">
+        <img src="./assets/images/icon-advanced.svg" alt="Advanced mode image">
+        <label class="mode-plan" for="advanced">Advanced</label>
+        <span class="cost-plan">$12/mo</span>
+        <input type="radio" name="" id="advanced">
+      </div>
+      <div class="data__plan-container">
+        <img src="./assets/images/icon-pro.svg" alt="Pro mode image">
+        <label class="mode-plan" for="pro">Pro</label>
+        <span class="cost-plan">$15/mo</span>
+        <input type="radio" name="" id="pro">
+      </div>
+      <div class="data__type-plan-container">
+        <span class="type-plan selected-type">Monthly</span>
+        <div class="toggle-container">
+          <input class="switch" type="checkbox" id="switch">
+          <label class="toggle-label" for="switch">Toggle</label>
+        </div>
+        <span class="type-plan">Yearly</span>
+      </div>
+    </div>
+    <div class="footer">
+      <a class="footer__btn-back">
+        Go Back
+      </a>
+      <button class="footer__btn-next">
+        Next Step
+      </button>
     </div>
   </form>
   <!-- Sidebar start -->

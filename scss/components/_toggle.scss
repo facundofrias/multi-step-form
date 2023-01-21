@@ -1,0 +1,39 @@
+.switch[type=checkbox]{
+  height: 0;
+  width: 0;
+  visibility: hidden;
+}
+
+.toggle-label {
+  cursor: pointer;
+  text-indent: -9999px;
+  width: 40px;
+  height: 22px;
+  background: grey;
+  display: inline-block;
+  border-radius: 100px;
+  position: relative;
+  background: $marineBlue;
+}
+
+.toggle-label:after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 5px;
+  width: 14px;
+  height: 14px;
+  background: #fff;
+  border-radius: 20px;
+  transition: 0.3s;
+}
+
+
+.switch:checked + label:after {
+  left: calc(100% - 5px);
+  transform: translateX(-100%);
+}
+
+.toggle-label:active:after {
+  width: 20px;
+}

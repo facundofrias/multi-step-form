@@ -1,0 +1,105 @@
+.form {
+  height: 100vh;
+  min-height: 560px;
+  display: flex;
+  flex-direction: column;
+}
+
+.data {
+  width: 90%;
+  margin: 1rem auto;
+  padding: 20px 25px;
+
+  background-color: $white;
+  border-radius: 7px;
+
+  position: relative;
+  top: -4rem;
+
+  // Step 1 - Personal info
+  &__field-container {
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+
+    & label {
+      padding-bottom: 3px;
+      font-size: 12px;
+      font-weight: 500;
+      color: $marineBlue;
+    }
+  }
+  
+  &__title {
+    padding-bottom: 10px;
+    color: $marineBlue;
+    font-size: 25px;
+    font-weight: 700;
+  }
+
+  &__description {
+    padding-bottom: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: $coolGray;
+  }
+
+  // Step 2 - Select your plan
+  &__plan-container {
+    margin-bottom: 1rem;
+    padding: 1.2rem;
+    border: 1px solid $coolGray;
+    border-radius: 7px;
+    display: grid;
+    grid-template-columns: 25% auto;
+    grid-template-rows: auto auto;
+
+    & img {
+      grid-row: 1/3;
+    }
+
+    & input {
+      display: none;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__type-plan-container {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+}
+
+.mode-plan {
+  font-size: 17px;
+  font-weight: 500;
+  color: $marineBlue;
+}
+
+.cost-plan {
+  font-size: 14px;
+  font-weight: 500;
+  color: $coolGray;
+}
+
+.selected-plan {
+  background-color: $magnolia;
+  border-color: $purplishBlue;
+}
+
+.type-plan {
+  font-weight: 500;
+  color: $coolGray;
+}
+
+.selected-type {
+  color: $marineBlue;
+}

@@ -1,0 +1,25 @@
+.footer {
+  margin-top: auto;
+  padding: 12px 1rem;
+  height: 4.5rem;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__btn-next{
+    padding: 10px;
+    background-color: $marineBlue;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  &__btn-back {
+    // visibility: hidden;
+    font-weight: 500;
+    color: $coolGray;
+  }
+}
