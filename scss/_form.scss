@@ -29,7 +29,7 @@
       color: $marineBlue;
     }
   }
-  
+
   &__title {
     padding-bottom: 10px;
     color: $marineBlue;
@@ -76,6 +76,50 @@
     align-items: center;
   }
 
+  // Step 3 - Pick add-ons
+  &__add-ons-container {
+    margin-bottom: 1rem;
+    padding: 1.2rem;
+    border: 1px solid $coolGray;
+    border-radius: 7px;
+    display: grid;
+    grid-template-columns: 15% 70% 15%;
+    grid-template-rows: auto auto;
+
+    & input {
+      width: 20px;
+      height: auto;
+      grid-row: 1/3;
+
+
+      &[type="checkbox"]:checked {
+        accent-color: $purple;
+      }
+    }
+
+  }
+
+  &__add-ons-description-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__add-ons-title {
+    font-weight: 700;
+    color: $marineBlue;
+  }
+
+  &__add-ons-description {
+    font-size: 12px;
+    font-weight: 500;
+    color: $coolGray;
+  }
+
+  &__add-ons-cost {
+    font-size: 13px;
+    font-weight: 500;
+    color: $purple;
+  }
 }
 
 .mode-plan {
@@ -102,4 +146,67 @@
 
 .selected-type {
   color: $marineBlue;
+}
+
+.selected-add-ons {
+  border: 1px solid $purple;
+  background-color: $magnolia;
+}
+
+// Step 4 - Finishing up
+.finishing-up {
+  font-weight: 500;
+}
+
+.check-plan-container,
+.check-add-ons-container {
+  padding: 1rem 1rem 0 1rem ;
+  background-color: $magnolia;
+  border-radius: 0 0 5px 5px;
+}
+
+.check-plan,
+.check-cost,
+.check-add-ons-cost {
+  color: $marineBlue;
+}
+
+.change-plan,
+.check-add-ons,
+.check-total {
+  color: $coolGray;
+}
+
+.check-plan-container {
+  border-radius: 5px 5px 0 0;
+  display: grid;
+  grid-template-columns: 70% auto;
+  grid-template-rows: auto auto;
+  justify-content: space-between;
+}
+
+.check-plan,
+.line {
+  grid-column: 1/3;
+}
+
+.check-add-ons-container,
+.check-total-container {
+  padding-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.line {
+  padding-top: 1rem;
+  border-bottom: 1px solid $coolGray;
+}
+
+.check-total-container {
+  padding: 1rem;
+
+  & .check-total-cost {
+    font-weight: 700;
+    color: $purple;
+  }
 }

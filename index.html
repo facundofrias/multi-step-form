@@ -64,25 +64,25 @@
       Step 4
       Summary -->
     </div>
-    <div class="data" style="display: none;">
+    <div class="data tab">
       <div class="data__field-container">
         <p class="data__title">Personal info</p>
         <p class="data__description">Please provide your name, email address, and phone number.</p>
       </div>
       <div class="data__field-container">
         <label for="name">Name</label>
-        <input type="text" name="" id="name" placeholder="e.g. Stephen King">
+        <input type="text" name="" id="name" placeholder="e.g. Stephen King" required autofocus>
       </div>
       <div class="data__field-container">
         <label for="email">Email Address</label>
-        <input type="email" name="" id="email" placeholder="e.g. stephenking@lorem.com">
+        <input type="email" name="" id="email" placeholder="e.g. stephenking@lorem.com"  required>
       </div>
       <div class="data__field-container">
         <label for="name">Phone Number</label>
-        <input type="text" name="" id="name" placeholder="e.g. +1 234 567 890">
+        <input type="text" name="" id="name" placeholder="e.g. +1 234 567 890" required>
       </div>
     </div>
-    <div class="data">
+    <div class="data tab plan-container">
       <div class="data__field-container">
         <p class="data__title">Select your plan</p>
         <p class="data__description">You have the option of monthly or yearly billing.</p>
@@ -114,10 +114,64 @@
         <span class="type-plan">Yearly</span>
       </div>
     </div>
+    <div class="data tab">
+      <div class="data__field-container">
+        <p class="data__title">Pick add-ons</p>
+        <p class="data__description">Add-ons help enhance your gaming experience.</p>
+      </div>
+      <div class="data__add-ons-container">
+        <input type="checkbox" name="my-checkbox" id="opt-in-service">
+        <div class="data__add-ons-description-container">
+          <label class="data__add-ons-title" for="opt-in-service">Online service</label>
+          <span class="data__add-ons-description">Acces to multiplayer games</span>
+        </div>
+        <span class="data__add-ons-cost">+$1/mo</span>
+      </div>
+      <div class="data__add-ons-container">
+        <input type="checkbox" name="my-checkbox" id="opt-in-storage">
+        <div class="data__add-ons-description-container">
+          <label class="data__add-ons-title" for="opt-in-storage">Online service</label>
+          <span class="data__add-ons-description">Acces to multiplayer games</span>
+        </div>
+        <span class="data__add-ons-cost">+$1/mo</span>
+      </div>
+      <div class="data__add-ons-container">
+        <input type="checkbox" name="my-checkbox" id="opt-in-profile">
+        <div class="data__add-ons-description-container">
+          <label class="data__add-ons-title" for="opt-in-profile">Online service</label>
+          <span class="data__add-ons-description">Acces to multiplayer games</span>
+        </div>
+        <span class="data__add-ons-cost">+$1/mo</span>
+      </div>
+    </div>
+
+    <div class="data tab summary">
+      <div class="data__field-container">
+        <p class="data__title">Finishing up</p>
+        <p class="data__description">Double-check everything looks OK before confirming.</p>
+      </div>
+      <div class="check-container">
+        <div class="check-plan-container">
+          <span class="check-plan">Arcade (Monthly)</span>
+          <a class="change-plan" href="">Change</a>
+          <span class="check-cost">+$9/mo</span> 
+          <div class="line"></div>
+        </div>
+      </div>
+      <div class="check-add-ons-container">
+        <span class="check-add-ons">Online service</span>
+        <span class="check-add-ons-cost">+$2/mo</span>
+      </div>
+      <div class="check-total-container">
+        <span class="check-total">Total (per month)</span>
+        <span class="check-total-cost">+$12/mo</span>
+      </div>
+    </div>
+
     <div class="footer">
-      <a class="footer__btn-back">
+      <!-- <a class="footer__btn-back">
         Go Back
-      </a>
+      </a> -->
       <button class="footer__btn-next">
         Next Step
       </button>
@@ -218,6 +272,9 @@
     <!-- Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
     Coded by <a href="#">Your Name Here</a>. -->
   </div>
+
+  <!-- Script -->
+  <script src="./js/script.js"></script>
 </body>
 
 </html>
