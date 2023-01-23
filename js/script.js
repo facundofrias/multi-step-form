@@ -1,4 +1,4 @@
-let tab = 0;
+let tab = 1;
 mostrarPestaña(tab);
 
 // Funciones

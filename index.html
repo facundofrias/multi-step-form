@@ -33,141 +33,132 @@
 
 <body>
   <form class="form" action="">
-    <div class="sidebar-container">
-      <!-- <img src="./assets/images/bg-sidebar-mobile.svg" alt=""> -->
-      <nav class="navbar">
-        <ul class="navbar__ul">
-          <li class="navbar__li">
-            <a class="navbar__a selected-step" href="">1</a>
-          </li>
-          <li class="navbar__li">
-            <a class="navbar__a" href="">2</a>
-          </li>
-          <li class="navbar__li">
-            <a class="navbar__a" href="">3</a>
-          </li>
-          <li class="navbar__li">
-            <a class="navbar__a" href="">4</a>
-          </li>
-        </ul>
-      </nav>
-
-      <!-- Step 1
-      Your info
-
-      Step 2
-      Select plan
-
-      Step 3
-      Add-ons
-
-      Step 4
-      Summary -->
-    </div>
-    <div class="data tab">
-      <div class="data__field-container">
-        <p class="data__title">Personal info</p>
-        <p class="data__description">Please provide your name, email address, and phone number.</p>
+    <div class="steps-container">
+      <div class="sidebar-container">
+        <!-- <img src="./assets/images/bg-sidebar-mobile.svg" alt=""> -->
+        <nav class="navbar">
+          <ul class="navbar__ul">
+            <li class="navbar__li">
+              <a class="navbar__a selected-step" href="">1</a>
+            </li>
+            <li class="navbar__li">
+              <a class="navbar__a" href="">2</a>
+            </li>
+            <li class="navbar__li">
+              <a class="navbar__a" href="">3</a>
+            </li>
+            <li class="navbar__li">
+              <a class="navbar__a" href="">4</a>
+            </li>
+          </ul>
       </div>
-      <div class="data__field-container">
-        <label for="name">Name</label>
-        <input type="text" name="" id="name" placeholder="e.g. Stephen King" required autofocus>
-      </div>
-      <div class="data__field-container">
-        <label for="email">Email Address</label>
-        <input type="email" name="" id="email" placeholder="e.g. stephenking@lorem.com"  required>
-      </div>
-      <div class="data__field-container">
-        <label for="name">Phone Number</label>
-        <input type="text" name="" id="name" placeholder="e.g. +1 234 567 890" required>
-      </div>
-    </div>
-    <div class="data tab plan-container">
-      <div class="data__field-container">
-        <p class="data__title">Select your plan</p>
-        <p class="data__description">You have the option of monthly or yearly billing.</p>
-      </div>
-      <div class="data__plan-container">
-        <img src="./assets/images/icon-arcade.svg" alt="Arcade mode image">
-        <label class="mode-plan" for="arcade">Arcade</label>
-        <span class="cost-plan">$9/mo</span>
-        <input type="radio" name="" id="arcade">
-      </div>
-      <div class="data__plan-container selected-plan">
-        <img src="./assets/images/icon-advanced.svg" alt="Advanced mode image">
-        <label class="mode-plan" for="advanced">Advanced</label>
-        <span class="cost-plan">$12/mo</span>
-        <input type="radio" name="" id="advanced">
-      </div>
-      <div class="data__plan-container">
-        <img src="./assets/images/icon-pro.svg" alt="Pro mode image">
-        <label class="mode-plan" for="pro">Pro</label>
-        <span class="cost-plan">$15/mo</span>
-        <input type="radio" name="" id="pro">
-      </div>
-      <div class="data__type-plan-container">
-        <span class="type-plan selected-type">Monthly</span>
-        <div class="toggle-container">
-          <input class="switch" type="checkbox" id="switch">
-          <label class="toggle-label" for="switch">Toggle</label>
+      <!-- Step 1 - Personal info -->
+      <div class="data tab">
+        <div class="data__step-info">
+          <p class="data__title">Personal info</p>
+          <p class="data__description">Please provide your name, email address, and phone number.</p>
         </div>
-        <span class="type-plan">Yearly</span>
-      </div>
-    </div>
-    <div class="data tab">
-      <div class="data__field-container">
-        <p class="data__title">Pick add-ons</p>
-        <p class="data__description">Add-ons help enhance your gaming experience.</p>
-      </div>
-      <div class="data__add-ons-container">
-        <input type="checkbox" name="my-checkbox" id="opt-in-service">
-        <div class="data__add-ons-description-container">
-          <label class="data__add-ons-title" for="opt-in-service">Online service</label>
-          <span class="data__add-ons-description">Acces to multiplayer games</span>
+        <div class="field">
+          <label class="field__title" for="name">Name</label>
+          <input class="field-input" type="text" name="" id="name" placeholder="e.g. Stephen King" required autofocus>
         </div>
-        <span class="data__add-ons-cost">+$1/mo</span>
-      </div>
-      <div class="data__add-ons-container">
-        <input type="checkbox" name="my-checkbox" id="opt-in-storage">
-        <div class="data__add-ons-description-container">
-          <label class="data__add-ons-title" for="opt-in-storage">Online service</label>
-          <span class="data__add-ons-description">Acces to multiplayer games</span>
+        <div class="field">
+          <label class="field__title" for="email">Email Address</label>
+          <input class="field-input" type="email" name="" id="email" placeholder="e.g. stephenking@lorem.com"  required>
         </div>
-        <span class="data__add-ons-cost">+$1/mo</span>
-      </div>
-      <div class="data__add-ons-container">
-        <input type="checkbox" name="my-checkbox" id="opt-in-profile">
-        <div class="data__add-ons-description-container">
-          <label class="data__add-ons-title" for="opt-in-profile">Online service</label>
-          <span class="data__add-ons-description">Acces to multiplayer games</span>
-        </div>
-        <span class="data__add-ons-cost">+$1/mo</span>
-      </div>
-    </div>
-
-    <div class="data tab summary">
-      <div class="data__field-container">
-        <p class="data__title">Finishing up</p>
-        <p class="data__description">Double-check everything looks OK before confirming.</p>
-      </div>
-      <div class="check-container">
-        <div class="check-plan-container">
-          <span class="check-plan">Arcade (Monthly)</span>
-          <a class="change-plan" href="">Change</a>
-          <span class="check-cost">+$9/mo</span> 
-          <div class="line"></div>
+        <div class="field">
+          <label class="field__title" for="name">Phone Number</label>
+          <input class="field-input" type="text" name="" id="name" placeholder="e.g. +1 234 567 890" required>
         </div>
       </div>
-      <div class="check-add-ons-container">
-        <span class="check-add-ons">Online service</span>
-        <span class="check-add-ons-cost">+$2/mo</span>
+      <!-- Step 2 - Plan selection -->
+      <div class="data tab">
+        <div class="data__step-info">
+          <p class="data__title">Select your plan</p>
+          <p class="data__description">You have the option of monthly or yearly billing.</p>
+        </div>
+        <div class="data__plan-container">
+          <img src="./assets/images/icon-arcade.svg" alt="Arcade mode image">
+          <label class="mode-plan" for="arcade">Arcade</label>
+          <span class="cost-plan">$9/mo</span>
+          <input type="radio" name="" id="arcade">
+        </div>
+        <div class="data__plan-container selected-plan">
+          <img src="./assets/images/icon-advanced.svg" alt="Advanced mode image">
+          <label class="mode-plan" for="advanced">Advanced</label>
+          <span class="cost-plan">$12/mo</span>
+          <input type="radio" name="" id="advanced">
+        </div>
+        <div class="data__plan-container">
+          <img src="./assets/images/icon-pro.svg" alt="Pro mode image">
+          <label class="mode-plan" for="pro">Pro</label>
+          <span class="cost-plan">$15/mo</span>
+          <input type="radio" name="" id="pro">
+        </div>
+        <div class="data__type-plan-container">
+          <span class="type-plan selected-type">Monthly</span>
+          <div class="toggle-container">
+            <input class="switch" type="checkbox" id="switch">
+            <label class="toggle-label" for="switch">Toggle</label>
+          </div>
+          <span class="type-plan">Yearly</span>
+        </div>
       </div>
-      <div class="check-total-container">
-        <span class="check-total">Total (per month)</span>
-        <span class="check-total-cost">+$12/mo</span>
+      <!-- Step 3 - Add-ons -->
+      <div class="data tab">
+        <div class="data__field-container">
+          <p class="data__title">Pick add-ons</p>
+          <p class="data__description">Add-ons help enhance your gaming experience.</p>
+        </div>
+        <div class="data__add-ons-container">
+          <input type="checkbox" name="my-checkbox" id="opt-in-service">
+          <div class="data__add-ons-description-container">
+            <label class="data__add-ons-title" for="opt-in-service">Online service</label>
+            <span class="data__add-ons-description">Acces to multiplayer games</span>
+          </div>
+          <span class="data__add-ons-cost">+$1/mo</span>
+        </div>
+        <div class="data__add-ons-container">
+          <input type="checkbox" name="my-checkbox" id="opt-in-storage">
+          <div class="data__add-ons-description-container">
+            <label class="data__add-ons-title" for="opt-in-storage">Online service</label>
+            <span class="data__add-ons-description">Acces to multiplayer games</span>
+          </div>
+          <span class="data__add-ons-cost">+$1/mo</span>
+        </div>
+        <div class="data__add-ons-container">
+          <input type="checkbox" name="my-checkbox" id="opt-in-profile">
+          <div class="data__add-ons-description-container">
+            <label class="data__add-ons-title" for="opt-in-profile">Online service</label>
+            <span class="data__add-ons-description">Acces to multiplayer games</span>
+          </div>
+          <span class="data__add-ons-cost">+$1/mo</span>
+        </div>
+      </div>
+      <!-- Step 4 - Summary -->
+      <div class="data tab summary">
+        <div class="data__field-container">
+          <p class="data__title">Finishing up</p>
+          <p class="data__description">Double-check everything looks OK before confirming.</p>
+        </div>
+        <div class="check-container">
+          <div class="check-plan-container">
+            <span class="check-plan">Arcade (Monthly)</span>
+            <a class="change-plan" href="">Change</a>
+            <span class="check-cost">+$9/mo</span> 
+            <div class="line"></div>
+          </div>
+        </div>
+        <div class="check-add-ons-container">
+          <span class="check-add-ons">Online service</span>
+          <span class="check-add-ons-cost">+$2/mo</span>
+        </div>
+        <div class="check-total-container">
+          <span class="check-total">Total (per month)</span>
+          <span class="check-total-cost">+$12/mo</span>
+        </div>
       </div>
     </div>
-
     <div class="footer">
       <!-- <a class="footer__btn-back">
         Go Back
