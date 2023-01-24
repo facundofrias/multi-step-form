@@ -34,21 +34,21 @@
 <body>
   <form class="form" action="">
     <div class="steps-container" id="steps-container">
-      <div class="sidebar-container">
+      <div class="sidebar-container" id="sidebar">
         <!-- <img src="./assets/images/bg-sidebar-mobile.svg" alt=""> -->
         <nav class="navbar">
           <ul class="navbar__ul">
             <li class="navbar__li">
-              <span class="navbar__a selected-step" href="">1</span>
+              <span class="step selected-step">1</span>
             </li>
             <li class="navbar__li">
-              <span class="navbar__a" href="">2</span>
+              <span class="step">2</span>
             </li>
             <li class="navbar__li">
-              <span class="navbar__a" href="">3</span>
+              <span class="step">3</span>
             </li>
             <li class="navbar__li">
-              <span class="navbar__a" href="">4</span>
+              <span class="step">4</span>
             </li>
           </ul>
       </div>
@@ -67,8 +67,8 @@
           <input class="field-input" type="email" name="" id="email" placeholder="e.g. stephenking@lorem.com" required>
         </div>
         <div class="field">
-          <label class="field__title" for="name">Phone Number</label>
-          <input class="field-input" type="text" name="" id="name" placeholder="e.g. +1 234 567 890" required>
+          <label class="field__title" for="name">Phone Number (without 0 and 15)</label>
+          <input class="field-input" type="text" name="" id="phone" placeholder="e.g. +1 234 567 890" required>
         </div>
       </div>
       <!-- Step 2 - Plan selection -->
@@ -77,7 +77,7 @@
           <p class="data__title">Select your plan</p>
           <p class="data__description">You have the option of monthly or yearly billing.</p>
         </div>
-        <div class="data__plan-container">
+        <div class="data__plan-container" id="arcade-plan">
           <img src="./assets/images/icon-arcade.svg" alt="Arcade mode image">
           <label class="mode-plan" for="arcade">Arcade</label>
           <span class="cost-plan">$9/mo</span>

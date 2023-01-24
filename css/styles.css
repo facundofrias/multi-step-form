@@ -102,7 +102,7 @@ button {
   display: flex;
   flex-direction: row;
 }
-.navbar__a {
+.navbar .step {
   margin: 5px;
   padding: 5px 10px;
   color: white;
