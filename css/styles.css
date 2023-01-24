@@ -42,6 +42,10 @@ button {
   display: none;
 }
 
+.tab-on {
+  display: inline;
+}
+
 .switch[type=checkbox] {
   height: 0;
   width: 0;
@@ -119,7 +123,8 @@ button {
 }
 
 .steps-container {
-  height: calc(100% + 99px);
+  height: calc(100% - 70px);
+  min-height: 510px;
 }
 
 .data {
@@ -318,6 +323,7 @@ button {
 }
 .footer__btn-next {
   padding: 10px;
+  display: none;
   background-color: hsl(213deg, 96%, 18%);
   border: none;
   border-radius: 3px;
@@ -326,8 +332,27 @@ button {
   font-weight: 500;
 }
 .footer__btn-back {
+  display: none;
   font-weight: 500;
   color: hsl(231deg, 11%, 63%);
+}
+.footer__btn-submit {
+  padding: 10px;
+  display: none;
+  background-color: hsl(243deg, 76%, 60%);
+  border: none;
+  border-radius: 3px;
+  color: white;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.btn-displayed {
+  display: inline;
+}
+
+.space-between {
+  justify-content: space-between;
 }
 
 /*# sourceMappingURL=styles.css.map */

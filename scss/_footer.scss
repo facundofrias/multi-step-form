@@ -8,6 +8,7 @@
 
   &__btn-next{
     padding: 10px;
+    display: none;
     background-color: $marineBlue;
     border: none;
     border-radius: 3px;
@@ -17,7 +18,27 @@
   }
 
   &__btn-back {
+    display: none;
     font-weight: 500;
     color: $coolGray;
   }
+
+  &__btn-submit {
+    padding: 10px;
+    display: none;
+    background-color: $strongPurple;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+  }
+}
+
+.btn-displayed {
+  display: inline; 
+}
+
+.space-between {
+  justify-content: space-between;
 }

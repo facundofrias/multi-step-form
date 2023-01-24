@@ -33,22 +33,22 @@
 
 <body>
   <form class="form" action="">
-    <div class="steps-container">
+    <div class="steps-container" id="steps-container">
       <div class="sidebar-container">
         <!-- <img src="./assets/images/bg-sidebar-mobile.svg" alt=""> -->
         <nav class="navbar">
           <ul class="navbar__ul">
             <li class="navbar__li">
-              <a class="navbar__a selected-step" href="">1</a>
+              <span class="navbar__a selected-step" href="">1</span>
             </li>
             <li class="navbar__li">
-              <a class="navbar__a" href="">2</a>
+              <span class="navbar__a" href="">2</span>
             </li>
             <li class="navbar__li">
-              <a class="navbar__a" href="">3</a>
+              <span class="navbar__a" href="">3</span>
             </li>
             <li class="navbar__li">
-              <a class="navbar__a" href="">4</a>
+              <span class="navbar__a" href="">4</span>
             </li>
           </ul>
       </div>
@@ -64,7 +64,7 @@
         </div>
         <div class="field">
           <label class="field__title" for="email">Email Address</label>
-          <input class="field-input" type="email" name="" id="email" placeholder="e.g. stephenking@lorem.com"  required>
+          <input class="field-input" type="email" name="" id="email" placeholder="e.g. stephenking@lorem.com" required>
         </div>
         <div class="field">
           <label class="field__title" for="name">Phone Number</label>
@@ -136,7 +136,7 @@
         </div>
       </div>
       <!-- Step 4 - Summary -->
-      <div class="data tab summary">
+      <div class="data tab">
         <div class="data__field-container">
           <p class="data__title">Finishing up</p>
           <p class="data__description">Double-check everything looks OK before confirming.</p>
@@ -145,7 +145,7 @@
           <div class="check-plan-container">
             <span class="check-plan">Arcade (Monthly)</span>
             <a class="change-plan" href="">Change</a>
-            <span class="check-cost">+$9/mo</span> 
+            <span class="check-cost">+$9/mo</span>
             <div class="line"></div>
           </div>
         </div>
@@ -160,12 +160,13 @@
       </div>
     </div>
     <div class="footer">
-      <!-- <a class="footer__btn-back">
+      <a class="footer__btn-back" id="btn-back">
         Go Back
-      </a> -->
-      <button class="footer__btn-next">
+      </a>
+      <a class="footer__btn-next btn-displayed" id="btn-next">
         Next Step
-      </button>
+      </a>
+      <input class="footer__btn-submit" type="submit" value="Confirm" id="btn-submit">
     </div>
   </form>
   <!-- Sidebar start -->
