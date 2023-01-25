@@ -28,6 +28,10 @@ input {
 input::placeholder {
   color: hsl(231deg, 11%, 63%);
 }
+input[type=radio] {
+  display: none;
+}
+
 a {
   text-decoration: none;
   cursor: pointer;

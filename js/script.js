@@ -1,11 +1,23 @@
-let currentTab = 1,
+// Clase
+class Client {
+  constructor(name, email, phone, modePlan, addOns = {onlineService : false, largerSotrage : false, customizableProfile: false}) {
+    this.name = name;
+    this.email = email;
+    this.phone = phone;
+    this.modePlan = modePlan;
+    this.addOns = addOns;
+  }
+}
+
+let client = new Client,
+    currentTab = 1,
     nextTab,
     prevTab,
     tabs = document.getElementsByClassName("tab");
 mostrarPestaña(currentTab);
 
-// Eventos
 
+// Eventos
 
 
 // Evento que se dispara cuando se avanza un step
@@ -18,16 +30,19 @@ btnBack.addEventListener("click", displayPrevTab);
 
 
 // Evento que se dispara cuando se selecciona un plan
-const plans = document.getElementsByClassName("radio-plan");
+const plans = document.getElementsByClassName("mode-plan");
 for (const plan of plans) {
-  console.log();
+  plan.addEventListener("click", () => {
+    removeSelectedPlan();
+    plan.classList.add('selected-plan');
+  });
 }
 
-// Selecciona el plan 
-function selectPlan() {
-  console.log(e);
-  //alert("entrando a plan");
-}
+// Quita el css del plan seleccionado actualmente
+function removeSelectedPlan() {
+    Array.from(document.querySelectorAll('.mode-plan')).forEach((el) => el.classList.remove('selected-plan'));
+} 
+
 
 
 // Funciones
