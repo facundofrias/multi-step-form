@@ -18,10 +18,18 @@ btnBack.addEventListener("click", displayPrevTab);
 
 
 // Evento que se dispara cuando se selecciona un plan
-const plans = document.getElementsByClassName("data__plan-container");
+const plans = document.getElementsByClassName("radio-plan");
 for (const plan of plans) {
-  plan.addEventListener("click", selectPlan);
+  console.log();
 }
+
+// Selecciona el plan 
+function selectPlan() {
+  console.log(e);
+  //alert("entrando a plan");
+}
+
+
 // Funciones
 
 // Muestra la pestaña actual del formulario
@@ -155,9 +163,4 @@ function removeConfirmBtn() {
 // Cambia el estilo del step actual
 function setSelectedStep() {
   document.getElementsByClassName("step")[currentTab].classList.add('selected-step');
-}
-
-// Selecciona el plan 
-function selectPlan() {
-  alert("entrando a plan");
 }

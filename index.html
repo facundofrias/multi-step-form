@@ -78,22 +78,28 @@
           <p class="data__description">You have the option of monthly or yearly billing.</p>
         </div>
         <div class="data__plan-container" id="arcade-plan">
-          <img src="./assets/images/icon-arcade.svg" alt="Arcade mode image">
-          <label class="mode-plan" for="arcade">Arcade</label>
-          <span class="cost-plan">$9/mo</span>
-          <input type="radio" name="" id="arcade">
-        </div>
-        <div class="data__plan-container selected-plan">
-          <img src="./assets/images/icon-advanced.svg" alt="Advanced mode image">
-          <label class="mode-plan" for="advanced">Advanced</label>
-          <span class="cost-plan">$12/mo</span>
-          <input type="radio" name="" id="advanced">
+          <label class="mode-plan" for="arcade">
+            <img src="./assets/images/icon-arcade.svg" alt="Arcade mode image">
+            <span class="title-plan">Arcade</span>
+            <span class="cost-plan">$9/mo</span>
+          </label>
+          <input type="radio" name="plan" id="arcade">
         </div>
         <div class="data__plan-container">
-          <img src="./assets/images/icon-pro.svg" alt="Pro mode image">
-          <label class="mode-plan" for="pro">Pro</label>
-          <span class="cost-plan">$15/mo</span>
-          <input type="radio" name="" id="pro">
+          <label class="mode-plan selected-plan" for="advanced">
+            <img src="./assets/images/icon-advanced.svg" alt="Advanced mode image">
+            <span class="title-plan">Advanced</span>
+            <span class="cost-plan">$12/mo</span>
+          </label>
+          <input type="radio" name="plan" id="advanced" checked>
+        </div>
+        <div class="data__plan-container">
+          <label class="mode-plan" for="pro">
+            <img src="./assets/images/icon-pro.svg" alt="Pro mode image">
+            <span class="title-plan">Pro</span>
+            <span class="cost-plan">$15/mo</span>
+          </label>
+          <input type="radio" name="plan" id="pro">
         </div>
         <div class="data__type-plan-container">
           <span class="type-plan selected-type">Monthly</span>

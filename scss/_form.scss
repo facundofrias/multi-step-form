@@ -37,27 +37,27 @@
   }
 
   // Step 2 - Select your plan
-  &__plan-container {
-    margin-bottom: 1rem;
-    padding: 1.2rem;
-    border: 1px solid $coolGray;
-    border-radius: 7px;
-    display: grid;
-    grid-template-columns: 25% auto;
-    grid-template-rows: auto auto;
+  // &__plan-container {
+  //   margin-bottom: 1rem;
+  //   padding: 1.2rem;
+  //   border: 1px solid $coolGray;
+  //   border-radius: 7px;
+  //   display: grid;
+  //   grid-template-columns: 25% auto;
+  //   grid-template-rows: auto auto;
 
-    & img {
-      grid-row: 1/3;
-    }
+  //   & img {
+  //     grid-row: 1/3;
+  //   }
 
-    & input {
-      display: none;
-    }
+  //   & input {
+  //     display: none;
+  //   }
 
-    &:hover {
-      cursor: pointer;
-    }
-  }
+  //   &:hover {
+  //     cursor: pointer;
+  //   }
+  // }
 
   &__type-plan-container {
     margin: 2rem 0;
@@ -129,7 +129,7 @@
 }
 
 .input-error {
-  
+   
 }
 
 
@@ -138,6 +138,22 @@
   font-size: 17px;
   font-weight: 500;
   color: $marineBlue;
+  margin-bottom: 1rem;
+  padding: 1.2rem;
+  border: 1px solid $coolGray;
+  border-radius: 7px;
+  display: grid;
+  grid-template-columns: 25% auto;
+  grid-template-rows: auto auto;
+
+  & img {
+    grid-row: 1/3;
+  }
+
+  &:hover {
+    cursor: pointer;
+    background-color: hwb(260 99% 0%);
+  }
 }
 
 .cost-plan {

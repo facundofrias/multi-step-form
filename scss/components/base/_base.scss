@@ -28,6 +28,10 @@ input {
   &::placeholder {
     color: $coolGray;
   }
+
+  &[type=radio] {
+    // display: none;
+  }
 }
 
 a {

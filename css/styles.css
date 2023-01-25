@@ -28,7 +28,6 @@ input {
 input::placeholder {
   color: hsl(231deg, 11%, 63%);
 }
-
 a {
   text-decoration: none;
   cursor: pointer;
@@ -152,24 +151,6 @@ button {
   font-weight: 500;
   color: hsl(231deg, 11%, 63%);
 }
-.data__plan-container {
-  margin-bottom: 1rem;
-  padding: 1.2rem;
-  border: 1px solid hsl(231deg, 11%, 63%);
-  border-radius: 7px;
-  display: grid;
-  grid-template-columns: 25% auto;
-  grid-template-rows: auto auto;
-}
-.data__plan-container img {
-  grid-row: 1/3;
-}
-.data__plan-container input {
-  display: none;
-}
-.data__plan-container:hover {
-  cursor: pointer;
-}
 .data__type-plan-container {
   margin: 2rem 0;
   display: flex;
@@ -230,6 +211,20 @@ button {
   font-size: 17px;
   font-weight: 500;
   color: hsl(213deg, 96%, 18%);
+  margin-bottom: 1rem;
+  padding: 1.2rem;
+  border: 1px solid hsl(231deg, 11%, 63%);
+  border-radius: 7px;
+  display: grid;
+  grid-template-columns: 25% auto;
+  grid-template-rows: auto auto;
+}
+.mode-plan img {
+  grid-row: 1/3;
+}
+.mode-plan:hover {
+  cursor: pointer;
+  background-color: hwb(260 99% 0%);
 }
 
 .cost-plan {
