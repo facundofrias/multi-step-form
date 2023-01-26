@@ -1,16 +1,16 @@
 // Clase
 class Client {
-  constructor(name, email, phone, modePlan, addOns = {onlineService : false, largerSotrage : false, customizableProfile: false}) {
+  constructor(name, email, phone, plan = {mode: "monthly", type: "Advanced", price: "12", priceText: "12/mo"}, addOns = {onlineService : false, largerSotrage : false, customizableProfile: false}) {
     this.name = name;
     this.email = email;
     this.phone = phone;
-    this.modePlan = modePlan;
+    this.plan = plan;
     this.addOns = addOns;
   }
 }
 
 let client = new Client,
-    currentTab = 1,
+    currentTab = 2,
     nextTab,
     prevTab,
     tabs = document.getElementsByClassName("tab");
@@ -33,17 +33,34 @@ btnBack.addEventListener("click", displayPrevTab);
 const plans = document.getElementsByClassName("mode-plan");
 for (const plan of plans) {
   plan.addEventListener("click", () => {
-    removeSelectedPlan();
-    plan.classList.add('selected-plan');
+    removeSelectedPlan();    
+    plan.classList.add('selected-plan'); // Agrega la clase para dar estilo al plan seleccionado
+    setPlan(plan.getElementsByTagName("span"));
+    
   });
 }
 
-// Quita el css del plan seleccionado actualmente
-function removeSelectedPlan() {
-    Array.from(document.querySelectorAll('.mode-plan')).forEach((el) => el.classList.remove('selected-plan'));
-} 
+// Evento que se dispara cuando se selecciona un add-on
+const addOnsForm = document.getElementsByClassName("add-ons");
+for (const addOn of addOnsForm) {
+  addOn.addEventListener("click", () => {
+    let checkbox = addOn.firstElementChild; 
+    if(checkbox.checked) {
+      addOn.classList.add("selected-add-on");
+    } else {
+      addOn.classList.remove("selected-add-on");
+    }
+  });
+}
 
 
+function setAddOns() {
+  for(let i=0; i<addOnsForm.length; i++){
+    if(addOnsForm[i].firstElementChild.checked){
+      console.log(`Entra: ${i}`);
+    }
+  }
+}
 
 // Funciones
 
@@ -65,17 +82,19 @@ function mostrarPestaña(currentTab) {
     // Type
     case 1:
       tabs[currentTab].className = tabs[currentTab].className + " tab-on";
-      esMobile(630);
+      isMobile(630);
+      setPersonalInfo();
       break;
     // Add-ons
     case 2:
       tabs[currentTab].className = tabs[currentTab].className + " tab-on";
-      esMobile(570);
+      isMobile(570);
       break;
     // Summary
     case 3:
       tabs[currentTab].className = tabs[currentTab].className + " tab-on";
-      setConfirmBtn();
+      showConfirmBtn();
+      setAddOns();
       break;
   }
 }
@@ -91,7 +110,7 @@ function hideTabs() {
 }
 
 // Determina si la pantalla es mobile o desktop
-function esMobile(px) {
+function isMobile(px) {
   if(screen.width <= 375) {
     let stepsContainer = document.getElementById("steps-container");
     stepsContainer.style.minHeight = px + "px";
@@ -164,7 +183,7 @@ function displayNoneBack() {
 }
 
 // Cambia el botón "Next Step" por "Confirm"
-function setConfirmBtn() {
+function showConfirmBtn() {
   Array.from(document.querySelectorAll('.footer__btn-next')).forEach((el) => el.classList.remove('btn-displayed'));
   Array.from(document.querySelectorAll('.footer__btn-submit')).forEach((el) => el.classList.add('btn-displayed'));
 }
@@ -178,4 +197,29 @@ function removeConfirmBtn() {
 // Cambia el estilo del step actual
 function setSelectedStep() {
   document.getElementsByClassName("step")[currentTab].classList.add('selected-step');
+}
+
+// Carga datos personales de cliente
+function setPersonalInfo() {
+  let personalInfo = document.getElementsByClassName("field-input");
+  // client.name = personalInfo[0].value;
+  // client.email = personalInfo[1].value;
+  // client.phone = personalInfo[2].value;
+
+  // Valores ejemplo para trabajar
+  client.name = "Ejemplo nombre"
+  client.email = "ejemplo@mail.com"
+  client.phone = "1234567890"
+}
+
+// Quita el css del plan seleccionado actualmente
+function removeSelectedPlan() {
+  Array.from(document.querySelectorAll('.mode-plan')).forEach((el) => el.classList.remove('selected-plan'));
+} 
+
+// Carga el plan seleccionado por cliente
+function setPlan(plan) {
+  client.plan.type = plan[0].textContent;
+  client.plan.priceText = plan[1].textContent;
+  client.plan.price = client.plan.priceText.match(/(\d+)/)[0];
 }
