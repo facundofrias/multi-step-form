@@ -1,6 +1,6 @@
 // Clase
 class Client {
-  constructor(name, email, phone, plan = {mode: "monthly", type: "Advanced", price: "12", priceText: "12/mo"}, addOns = {onlineService : false, largerSotrage : false, customizableProfile: false}) {
+  constructor(name, email, phone, plan = {type: "mo", mode: "Advanced", price: "12", priceText: "12/mo"}, addOns = {onlineService : false, largerSotrage : false, customizableProfile: false}) {
     this.name = name;
     this.email = email;
     this.phone = phone;
@@ -9,27 +9,27 @@ class Client {
   }
 }
 
+// Main
 let client = new Client,
-    currentTab = 2,
+    currentTab = 1,
     nextTab,
     prevTab,
     tabs = document.getElementsByClassName("tab");
 mostrarPestaña(currentTab);
 
 
-// Eventos
+// ---- Eventos ----
 
-
-// Evento que se dispara cuando se avanza un step
+// Se dispara cuando se avanza un step
 const btnNext = document.getElementById("btn-next"); 
 btnNext.addEventListener("click", displayNextTab);
 
-// Evento que se dispara cuando se retrocede un step
+// Se dispara cuando se retrocede un step
 const btnBack = document.getElementById("btn-back"); 
 btnBack.addEventListener("click", displayPrevTab);
 
 
-// Evento que se dispara cuando se selecciona un plan
+// Se dispara cuando se selecciona un plan
 const plans = document.getElementsByClassName("mode-plan");
 for (const plan of plans) {
   plan.addEventListener("click", () => {
@@ -40,7 +40,48 @@ for (const plan of plans) {
   });
 }
 
-// Evento que se dispara cuando se selecciona un add-on
+// Se dispara cuando se cambia el modo (Monthly - Yearly)
+const switchPlan = document.getElementById("switch");
+switchPlan.addEventListener("click", setMode);
+const modePlan = document.getElementsByClassName("type-plan");
+const costPlans = document.getElementsByClassName("cost-plan")
+
+function setMode() {
+  if (switchPlan.checked) {
+    client.plan.type = "yr";
+    modePlan[0].classList.remove("selected-type");
+    modePlan[1].classList.add("selected-type");
+    setYearlyPlanText();
+  } else {
+    client.plan.type = "mo";
+    modePlan[1].classList.remove("selected-type");
+    modePlan[0].classList.add("selected-type");
+    //setMonthlyPlanText();
+  }
+}
+
+function setMonthlyPlanText() {
+  let text;
+  for (const costPlan of costPlans) {
+    text = costPlan.innerHTML;
+    text.replace("yr","mo");
+    costPlan.innerHTML = text;
+    console.log(costPlan.innerHTML);
+  }
+}
+
+function setYearlyPlanText() {
+  let text;
+  for (const costPlan of costPlans) {
+    text = costPlan.innerHTML;
+    console.log(text);
+    text.replace(/mo/g,"yr");
+    costPlan.innerHTML = text;
+    console.log(text);
+  }
+}
+
+// Se dispara cuando se selecciona un add-on
 const addOnsForm = document.getElementsByClassName("add-ons");
 for (const addOn of addOnsForm) {
   addOn.addEventListener("click", () => {
@@ -61,6 +102,7 @@ function setAddOns() {
     }
   }
 }
+
 
 // Funciones
 
@@ -219,7 +261,7 @@ function removeSelectedPlan() {
 
 // Carga el plan seleccionado por cliente
 function setPlan(plan) {
-  client.plan.type = plan[0].textContent;
+  client.plan.mode = plan[0].textContent;
   client.plan.priceText = plan[1].textContent;
   client.plan.price = client.plan.priceText.match(/(\d+)/)[0];
 }
