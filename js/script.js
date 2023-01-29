@@ -31,7 +31,7 @@ class Client {
 
 // ---- MAIN ----
 let client = new Client(),
-  currentTab = 2,
+  currentTab = 1,
   nextTab,
   prevTab,
   tabs = document.getElementsByClassName("tab"),
@@ -63,8 +63,9 @@ for (const plan of plans) {
 // Se dispara cuando se cambia el modo (Monthly - Yearly)
 const switchPlan = document.getElementById("switch");
 switchPlan.addEventListener("click", setMode);
-const modePlan = document.getElementsByClassName("type-plan");
-const costPlans = document.getElementsByClassName("cost-plan");
+const modePlan = document.getElementsByClassName("type-plan"),
+      costPlans = document.getElementsByClassName("cost-plan"),
+      costAddOns = document.getElementsByClassName("add-ons__cost");
 
 function setMode() {
   if (switchPlan.checked) {
@@ -72,13 +73,31 @@ function setMode() {
     modePlan[0].classList.remove("selected-type");
     modePlan[1].classList.add("selected-type");
     setYearlyFreeMonths();
+    setYearlyAddOnsText();
   } else {
     client.plan.type = "mo";
     modePlan[1].classList.remove("selected-type");
     modePlan[0].classList.add("selected-type");
     removeYearlyFreeMonths();
+    setMonthlyAddOnsText();
   }
 }
+
+// Cambia el costo de Add-ons "mo" a "yr"
+function setYearlyAddOnsText() {
+  for (let i = 0; i < costAddOns.length; i++) {
+    client.plan. addOns[i] = addOns[i]*10;
+    costAddOns[i].textContent = `+${addOns[i]}/yr`;
+  }
+}
+
+// Cambia el costo de Add-ons de "yr" a "mo"
+function setMonthlyAddOnsText() {
+  addOns[i] = addOns[i]/10;
+  costAddOns[i].textContent = `+${addOns[i]}/mo`;
+}
+
+
 
 // Se dispara cuando se selecciona un add-on
 const addOnsForm = document.getElementsByClassName("add-ons");
@@ -99,7 +118,10 @@ function setAddOns() {
     if (addOnsForm[i].firstElementChild.checked) {
       client.plan.addOns[Object.keys(client.plan.addOns)[i]][0] = true;
     }
-    console.log(client.plan.addOns[Object.keys(client.plan.addOns)[i]][0]);
+    else{
+      client.plan.addOns[Object.keys(client.plan.addOns)[i]][0] = false;
+    }
+    // console.log(client.plan.addOns[Object.keys(client.plan.addOns)[i]][0]);
   }
 }
 
@@ -110,7 +132,6 @@ function setAddOns() {
 
 // Muestra la pestaña actual del formulario
 function mostrarPestaña(currentTab) {
-  // console.log(client);
   hideTabs();
   setSelectedStep();
   let stepsContainer = document.getElementById("steps-container");
@@ -141,6 +162,7 @@ function mostrarPestaña(currentTab) {
       tabs[currentTab].className = tabs[currentTab].className + " tab-on";
       showConfirmBtn();
       setAddOns();
+      // console.log(client);
       break;
   }
 }
@@ -270,14 +292,14 @@ function setSelectedStep() {
 // Carga datos personales de cliente
 function setPersonalInfo() {
   let personalInfo = document.getElementsByClassName("field-input");
-  // client.name = personalInfo[0].value;
-  // client.email = personalInfo[1].value;
-  // client.phone = personalInfo[2].value;
+  client.name = personalInfo[0].value;
+  client.email = personalInfo[1].value;
+  client.phone = personalInfo[2].value;
 
   // Valores ejemplo para trabajar
-  client.name = "Ejemplo nombre";
-  client.email = "ejemplo@mail.com";
-  client.phone = "1234567890";
+  // client.name = "Ejemplo nombre";
+  // client.email = "ejemplo@mail.com";
+  // client.phone = "1234567890";
 }
 
 
