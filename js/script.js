@@ -1,6 +1,6 @@
-// Clases
+// Definición de  Clases
 class Plan {
-  constructor(type, mode, prices, priceText, addOns = {
+  constructor(type, mode, prices, priceSelected, addOns = {
     onlineService: [],
     largerSotrage: [],
     customizableProfile: [],
@@ -8,10 +8,9 @@ class Plan {
     this.type = type;
     this.mode = mode;
     this.prices = prices;
-    this.priceText = priceText;
-    this.addOns = addOns;
+    this.priceSelected = priceSelected;
+    this.addOns = addOns ;
   }
-
 }
 
 
@@ -20,33 +19,29 @@ class Client {
     name,
     email,
     phone,
-    pricesMonthly = [9, 12, 15],
-    pricesYearly = [90, 120, 150],
-    // plan = { type: "mo", mode: "Advanced", price: pricesMonthly[1], priceText: `$${pricesMonthly[1]}/mo`},
-    plan = new Plan("mo", "Advanced", undefined, `$${pricesMonthly[1]}/mo`, {onlineService: [false,1], largerSotrage: [false, 1], customizableProfile: [false,1]})
+    plan = new Plan("mo", "Advanced", undefined, undefined, {onlineService: [false,1], largerSotrage: [false, 1], customizableProfile: [false,1]})
     
   ) {
     this.name = name;
     this.email = email;
     this.phone = phone;
-    this.pricesMonthly = pricesMonthly;
-    this.pricesYearly = pricesYearly;
     this.plan = plan;
   }
 }
 
-// Main
+// ---- MAIN ----
 let client = new Client(),
   currentTab = 2,
   nextTab,
   prevTab,
-  tabs = document.getElementsByClassName("tab")
-  prices = [9, 12, 15];
+  tabs = document.getElementsByClassName("tab"),
+  monthlyPrices = [9, 12, 15],
+  yearlyPrices = setYearlyPrices();
 mostrarPestaña(currentTab);
-client.plan.prices = prices;
-console.log(client.plan);
+client.plan.prices = monthlyPrices;
 
-// ---- Eventos ----
+
+// ---- EVENTOS ----
 
 // Se dispara cuando se avanza un step
 const btnNext = document.getElementById("btn-next");
@@ -62,7 +57,6 @@ for (const plan of plans) {
   plan.addEventListener("click", () => {
     removeSelectedPlan();
     plan.classList.add("selected-plan"); // Agrega la clase para dar estilo al plan seleccionado
-    setPlan(plan.getElementsByTagName("span"));
   });
 }
 
@@ -77,28 +71,12 @@ function setMode() {
     client.plan.type = "yr";
     modePlan[0].classList.remove("selected-type");
     modePlan[1].classList.add("selected-type");
-    setYearlyPlanText();
+    setYearlyFreeMonths();
   } else {
     client.plan.type = "mo";
     modePlan[1].classList.remove("selected-type");
     modePlan[0].classList.add("selected-type");
-    setMonthlyPlanText();
-  }
-}
-
-function setMonthlyPlanText() {
-  for (let i = 0; i < costPlans.length; i++) {
-    costPlans[i].innerHTML = `$${client.pricesMonthly[i]}/mo`;
-    costPlans[i].nextElementSibling.remove();
-    isMobile(630);
-  }
-}
-
-function setYearlyPlanText() {
-  for (let i = 0; i < costPlans.length; i++) {
-    costPlans[i].innerHTML = `$${client.pricesYearly[i]}/yr`;
-    plans[i].innerHTML = plans[i].innerHTML + '<span class="months-free" id="pro-price">2 months free</span>';
-    isMobile(680);
+    removeYearlyFreeMonths();
   }
 }
 
@@ -115,18 +93,24 @@ for (const addOn of addOnsForm) {
   });
 }
 
+// Asigna los Add-ons en caso de haber sido seleccionados
 function setAddOns() {
   for (let i = 0; i < addOnsForm.length; i++) {
     if (addOnsForm[i].firstElementChild.checked) {
-      console.log(`Entra: ${i}`);
+      client.plan.addOns[Object.keys(client.plan.addOns)[i]][0] = true;
     }
+    console.log(client.plan.addOns[Object.keys(client.plan.addOns)[i]][0]);
   }
 }
 
-// Funciones
+
+
+// ---- FUNCIONES ----
+// ---- Funciones generales ----
 
 // Muestra la pestaña actual del formulario
 function mostrarPestaña(currentTab) {
+  // console.log(client);
   hideTabs();
   setSelectedStep();
   let stepsContainer = document.getElementById("steps-container");
@@ -148,6 +132,7 @@ function mostrarPestaña(currentTab) {
       break;
     // Add-ons
     case 2:
+      setPlan(document.getElementsByClassName("selected-plan")[0].getElementsByTagName("span"));
       tabs[currentTab].className = tabs[currentTab].className + " tab-on";
       isMobile(570);
       break;
@@ -280,6 +265,8 @@ function setSelectedStep() {
     [currentTab].classList.add("selected-step");
 }
 
+
+// ---- Funciones Step 1  ----
 // Carga datos personales de cliente
 function setPersonalInfo() {
   let personalInfo = document.getElementsByClassName("field-input");
@@ -293,6 +280,44 @@ function setPersonalInfo() {
   client.phone = "1234567890";
 }
 
+
+// ---- Funciones Step 2 ----
+// Agrega la leyenda de meses gratuitos 
+function setYearlyFreeMonths() {
+  for (let i = 0; i < costPlans.length; i++) {
+    costPlans[i].innerHTML = `$${yearlyPrices[i]}/yr`;
+    plans[i].innerHTML = plans[i].innerHTML + '<span class="months-free" id="pro-price">2 months free</span>';
+    isMobile(680);
+  }
+}
+
+// Quita la leyenda de meses gratuitos 
+function removeYearlyFreeMonths() {
+  for (let i = 0; i < costPlans.length; i++) {
+    costPlans[i].innerHTML = `$${monthlyPrices[i]}/mo`;
+    costPlans[i].nextElementSibling.remove();
+    isMobile(630);
+  }
+}
+
+// Setea los precios cuando se cambia de 'Monthly' a 'Yearly'
+function setYearlyPrices() {
+  let prices = [];
+  for (const price of monthlyPrices) {
+    prices.push(price*10);
+  }
+  return prices;
+}
+
+// Setea los precios cuando se cambia de 'Yearly' a 'Monthly'
+function setMonthlyPrices() {
+  let prices = [];
+  for (const price of yearlyPrices) {
+    prices.push(price/10);
+  }
+  return prices;
+}
+
 // Quita el css del plan seleccionado actualmente
 function removeSelectedPlan() {
   Array.from(document.querySelectorAll(".mode-plan")).forEach((el) =>
@@ -303,6 +328,11 @@ function removeSelectedPlan() {
 // Carga el plan seleccionado por cliente
 function setPlan(plan) {
   client.plan.mode = plan[0].textContent;
-  client.plan.priceText = plan[1].textContent;
-  client.plan.price = client.plan.priceText.match(/(\d+)/)[0];
+  client.plan.priceSelected = plan[1].textContent.match(/(\d+)/)[0];
 }
+
+// ---- Funciones Step 3 ----
+
+
+
+// ---- Funciones Step 4 ----
