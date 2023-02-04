@@ -1,6 +1,6 @@
 // Definición de  Clases
 class Plan {
-  constructor(type, mode, prices, priceSelected, addOns = {
+  constructor(type, mode, prices = [], priceSelected, addOns = {
     onlineService: [],
     largerSotrage: [],
     customizableProfile: [],
@@ -19,7 +19,7 @@ class Client {
     name,
     email,
     phone,
-    plan = new Plan("mo", "Advanced", undefined, undefined, {onlineService: [false,1], largerSotrage: [false, 1], customizableProfile: [false,1]})
+    plan = new Plan("mo", "Advanced", [9, 12, 15], undefined, {onlineService: [false, 1], largerSotrage: [false, 2], customizableProfile: [false, 2]})
     
   ) {
     this.name = name;
@@ -35,10 +35,9 @@ let client = new Client(),
   nextTab,
   prevTab,
   tabs = document.getElementsByClassName("tab"),
-  monthlyPrices = [9, 12, 15],
-  yearlyPrices = setYearlyPrices();
+  addOnsValues = Object.values(client.plan.addOns);
 mostrarPestaña(currentTab);
-client.plan.prices = monthlyPrices;
+client.plan.prices = [9, 12, 15];
 
 
 // ---- EVENTOS ----
@@ -72,29 +71,13 @@ function setMode() {
     client.plan.type = "yr";
     modePlan[0].classList.remove("selected-type");
     modePlan[1].classList.add("selected-type");
-    setYearlyFreeMonths();
-    setYearlyAddOnsText();
+    setYearlyPrices(10);
   } else {
     client.plan.type = "mo";
     modePlan[1].classList.remove("selected-type");
     modePlan[0].classList.add("selected-type");
-    removeYearlyFreeMonths();
-    setMonthlyAddOnsText();
+    setMonthlyPrices(10);
   }
-}
-
-// Cambia el costo de Add-ons "mo" a "yr"
-function setYearlyAddOnsText() {
-  for (let i = 0; i < costAddOns.length; i++) {
-    client.plan. addOns[i] = addOns[i]*10;
-    costAddOns[i].textContent = `+${addOns[i]}/yr`;
-  }
-}
-
-// Cambia el costo de Add-ons de "yr" a "mo"
-function setMonthlyAddOnsText() {
-  addOns[i] = addOns[i]/10;
-  costAddOns[i].textContent = `+${addOns[i]}/mo`;
 }
 
 
@@ -156,6 +139,7 @@ function mostrarPestaña(currentTab) {
       setPlan(document.getElementsByClassName("selected-plan")[0].getElementsByTagName("span"));
       tabs[currentTab].className = tabs[currentTab].className + " tab-on";
       isMobile(570);
+      setCostAddOnsText();
       break;
     // Summary
     case 3:
@@ -166,6 +150,26 @@ function mostrarPestaña(currentTab) {
       break;
   }
 }
+
+
+function setCostAddOnsText() {
+  switchPlan.checked ? setYearlyCostAddOnsText() : setMonthlyCostAddOnsText();
+}
+
+// Cambia el costo de Add-ons "mo" a "yr"
+function setYearlyCostAddOnsText() {
+  for (let i = 0; i < costAddOns.length; i++) {
+    costAddOns[i].textContent = `+$${addOnsValues[i][1]}/yr`;
+  }
+}
+
+// Cambia el costo de Add-ons de "yr" a "mo"
+function setMonthlyCostAddOnsText() {
+  for (let i = 0; i < costAddOns.length; i++) {
+    costAddOns[i].textContent = `+$${addOnsValues[i][1]}/mo`;
+  }
+}
+
 
 // Setea todas las pestañas en "display: none" y limpia los steps de la navbar
 function hideTabs() {
@@ -304,40 +308,42 @@ function setPersonalInfo() {
 
 
 // ---- Funciones Step 2 ----
-// Agrega la leyenda de meses gratuitos 
-function setYearlyFreeMonths() {
-  for (let i = 0; i < costPlans.length; i++) {
-    costPlans[i].innerHTML = `$${yearlyPrices[i]}/yr`;
+
+// Setea precios anuales cuando se cambia de 'Monthly' a 'Yearly'
+function setYearlyPrices(multiplier) {
+  for (let i = 0; i < client.plan.prices.length; i++) {
+    // Establece los precios anuales del tipo de plan
+    client.plan.prices[i] = client.plan.prices[i] * multiplier;
+
+    // Agrega la leyenda de meses gratuitos 
+    costPlans[i].innerHTML = `$${client.plan.prices[i]}/yr`;
     plans[i].innerHTML = plans[i].innerHTML + '<span class="months-free" id="pro-price">2 months free</span>';
     isMobile(680);
   }
+
+  // Establece los precios anuales de los Add-ons
+  for (let i = 0; i < addOnsValues.length; i++) {
+    addOnsValues[i][1] = addOnsValues[i][1] * multiplier;
+  }
 }
 
-// Quita la leyenda de meses gratuitos 
-function removeYearlyFreeMonths() {
-  for (let i = 0; i < costPlans.length; i++) {
-    costPlans[i].innerHTML = `$${monthlyPrices[i]}/mo`;
+// Setea precios mensuales cuando se cambia de 'Yearly' a 'Monthly'
+function setMonthlyPrices(divisor) {
+  for (let i = 0; i < client.plan.prices.length; i++) {
+    // Establece los precios anuales del tipo de plan
+    client.plan.prices[i] = client.plan.prices[i] / divisor;
+
+    // Quita la leyenda de meses gratuitos 
+    costPlans[i].innerHTML = `$${client.plan.prices[i]}/mo`;
     costPlans[i].nextElementSibling.remove();
     isMobile(630);
   }
-}
+  
 
-// Setea los precios cuando se cambia de 'Monthly' a 'Yearly'
-function setYearlyPrices() {
-  let prices = [];
-  for (const price of monthlyPrices) {
-    prices.push(price*10);
+  // Establece los precios mensuales de los Add-ons
+  for (let i = 0; i < addOnsValues.length; i++) {
+    addOnsValues[i][1] = addOnsValues[i][1] / divisor;
   }
-  return prices;
-}
-
-// Setea los precios cuando se cambia de 'Yearly' a 'Monthly'
-function setMonthlyPrices() {
-  let prices = [];
-  for (const price of yearlyPrices) {
-    prices.push(price/10);
-  }
-  return prices;
 }
 
 // Quita el css del plan seleccionado actualmente
