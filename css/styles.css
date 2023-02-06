@@ -41,14 +41,6 @@ button {
   cursor: pointer;
 }
 
-.tab {
-  display: none;
-}
-
-.tab-on {
-  display: inline;
-}
-
 .switch[type=checkbox] {
   height: 0;
   width: 0;
@@ -197,7 +189,7 @@ button {
 }
 .mode-plan:hover {
   cursor: pointer;
-  background-color: hwb(260 99% 0%);
+  background-color: hsl(217deg, 100%, 97%);
 }
 
 .cost-plan {
@@ -266,14 +258,15 @@ button {
 }
 
 .summary {
+  padding: 1rem;
+  border-radius: 5px;
   font-weight: 500;
+  background-color: hsl(217deg, 100%, 97%);
 }
 
 .check-plan-container,
 .check-add-ons-container {
-  padding: 1rem 1rem 0 1rem;
   background-color: hsl(217deg, 100%, 97%);
-  border-radius: 0 0 5px 5px;
 }
 
 .check-plan,
@@ -289,11 +282,24 @@ button {
 }
 
 .check-plan-container {
-  border-radius: 5px 5px 0 0;
   display: grid;
-  grid-template-columns: 70% auto;
-  grid-template-rows: auto auto;
+  display: flex;
   justify-content: space-between;
+}
+
+.type-plan {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.check-cost {
+  display: flex;
+  align-items: center;
+}
+
+.change-plan {
+  text-decoration: underline;
 }
 
 .check-plan,
@@ -303,13 +309,13 @@ button {
 
 .check-add-ons-container,
 .check-total-container {
-  padding-bottom: 1rem;
+  padding-top: 1rem;
   display: flex;
   justify-content: space-between;
 }
 
 .line {
-  padding-top: 1rem;
+  padding: 1rem;
   border-bottom: 1px solid hsl(231deg, 11%, 63%);
 }
 
