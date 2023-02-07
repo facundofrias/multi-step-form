@@ -639,7 +639,7 @@ function loadStepFive() {
   stepFive = `
     <div class="data end-step" id="current-tab">
       <div class="end-img">
-        <img src="/assets/images/icon-thank-you.svg" alt="">
+        <img src="./assets/images/icon-thank-you.svg" alt="End image">
       </div>
       <div class="end-title">
         <p>Thank you!</p>
