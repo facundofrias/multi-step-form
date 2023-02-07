@@ -37,12 +37,14 @@ let client = new Client(),
   nextTab,
   prevTab,
   // tabs = document.getElementsByClassName("tab"),
-  addOnsValues = Object.values(client.plan.addOns),
   multiplier = 10,   divisor = 10,
   validData,
-  plans, switchPlan, modePlan, costPlans, yearly = false, 
-  costAddOns, addOnsForm,
-  stepOne, stepTwo, stepThree, stepFour;
+  plans, switchPlan, modePlan, costPlans, yearly = false, modelyHTML, modeHTML, 
+  costAddOns, addOnsForm, 
+    addOnsValues = Object.values(client.plan.addOns),
+    addOnsKeys = Object.keys(client.plan.addOns),
+    addOnsSelected = false,
+  stepOne, stepTwo, stepThree, stepFour, stepFive;
 
 stepTwo = `
   <div class="data" id="current-tab">              
@@ -86,7 +88,7 @@ stepTwo = `
 // Asignación de precios de Plan
 client.plan.prices = [9, 12, 15];
 
-mostrarPestaña(currentTab);
+//showTab(currentTab);
 
 
 // ---- EVENTOS ----
@@ -122,7 +124,7 @@ function setMode() {
 // ---- Funciones generales ----
 
 // Muestra la pestaña actual del formulario
-function mostrarPestaña(currentTab) {
+function showTab(currentTab) {
   // hideTabs();
   setSelectedStep();
   let stepsContainer = document.getElementById("steps-container");
@@ -135,32 +137,31 @@ function mostrarPestaña(currentTab) {
     // Personal info
     case 0:
       loadStepOne();
-      // tabs[currentTab].className = tabs[currentTab].className + " tab-on";
       break;
     // Type
     case 1:
-      //tabs[currentTab].className = tabs[currentTab].className + " tab-on";
       loadStepTwo();
       isMobile(630);
       break;
     // Add-ons
     case 2:
-      // setPlan(document.getElementsByClassName("selected-plan")[0].getElementsByTagName("span"));
-      // tabs[currentTab].className = tabs[currentTab].className + " tab-on";
       isMobile(570);
       loadStepThree();
       break;
     // Summary
     case 3:
-      // tabs[currentTab].className = tabs[currentTab].className + " tab-on";
       showConfirmBtn();
       loadStepFour();
+      break;
+    // End
+    case 4:
+      isMobile(700);
+      loadStepFive();
       break;
   }
 }
 
 // Determina si la pantalla es mobile o desktop
-
 function isMobile(px) {
   if (screen.width <= 375) {
     let stepsContainer = document.getElementById("steps-container");
@@ -181,13 +182,14 @@ function displayNextTab() {
     case 2: 
       saveStepThree();
       break;
-    case 3:
+    case 4:
       //saveStepFour();
       break
   }
+  // Si los datos personales son válidos, aumenta currentTab en 1
   if(validData) {
     currentTab++;
-    mostrarPestaña(currentTab);
+    showTab(currentTab);
     setIndexTabs();
   }
 }
@@ -213,7 +215,7 @@ function displayPrevTab() {
       break
   }
   currentTab--;
-  mostrarPestaña(currentTab);
+  showTab(currentTab);
   setIndexTabs();
 }
 
@@ -223,9 +225,9 @@ function setIndexTabs() {
     nextTab = currentTab + 1;
     prevTab = currentTab - 1;
   }
-  if (currentTab >= 3) {
-    currentTab = 3;
-  }
+  // if (currentTab >= 3) {
+  //   currentTab = 3;
+  // }
 }
 
 // Muestra botón "Go Back" y setea el footer en justify-content: space between
@@ -256,6 +258,7 @@ function showConfirmBtn() {
   Array.from(document.querySelectorAll(".footer__btn-submit")).forEach((el) =>
     el.classList.add("btn-displayed")
   );
+  document.getElementById("btn-submit").addEventListener("click", displayNextTab);
 }
 
 // Cambia el botón "Confirm" por "Next Step"
@@ -273,7 +276,9 @@ function setSelectedStep() {
   Array.from(document.querySelectorAll(".step")).forEach((el) =>
     el.classList.remove("selected-step")
   );
-  document.getElementsByClassName("step")[currentTab].classList.add("selected-step");
+  if (currentTab < 4) {
+    document.getElementsByClassName("step")[currentTab].classList.add("selected-step");
+  }
 }
 
 
@@ -288,7 +293,7 @@ function verifyPersonalData() {
 
   if (name.value !== "" && email.value !== "" && phone.value !== "") {
     let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        phoneFormat = /^\(?([0-9]{4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        phoneFormat = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
     if (email.value.match(mailFormat) && phone.value.match(phoneFormat)) {
       saveStepOne(name.value, email.value, phone.value);
       return true;
@@ -507,14 +512,22 @@ function saveStepThree() {
 
 // Asigna los Add-ons en caso de haber sido seleccionados
 function setAddOns() {
+  let count = 0;
   for (let i = 0; i < addOnsForm.length; i++) {
     if (addOnsForm[i].firstElementChild.checked) {
       client.plan.addOns[Object.keys(client.plan.addOns)[i]][0] = true;
+      addOnsSelected = true;
     }
     else{
       client.plan.addOns[Object.keys(client.plan.addOns)[i]][0] = false;
+      count++;
     }
   }
+  if(count == 3) {
+    addOnsSelected = false;
+  }
+  addOnsValues = Object.values(client.plan.addOns);
+  addOnsKeys = Object.keys(client.plan.addOns);
 }
 
 // Carga Add-ons seleccionados
@@ -536,14 +549,14 @@ function getAddOns() {
 
 function loadStepFour() {
   document.getElementById("current-tab").remove();
-  console.log(client.plan.priceSelected);
-  let modeHTML;
   switch (client.plan.type) {
     case "mo":
-      modeHTML = "Monthly";
+      modelyHTML = "Monthly";
+      modeHTML = "month";
       break;
     case "yr":
-      modeHTML = "Yearly";
+      modelyHTML = "Yearly";
+      modeHTML = "year";
       break;
 
     default:
@@ -556,27 +569,85 @@ function loadStepFour() {
       <p class="data__title">Finishing up</p>
       <p class="data__description">Double-check everything looks OK before confirming.</p>
     </div>
-    <div class="summary">
+    <div class="summary" id="summary">
       <div class="check-plan-container">
         <div class="type-plan">
-          <span class="check-plan">${client.plan.mode} (${modeHTML})</span>
-          <span><a class="change-plan" href="">Change</a></span>
+          <span class="check-plan">${client.plan.mode} (${modelyHTML})</span>
+          <span><a class="change-plan" id="change-plan">Change</a></span>
         </div>
         <span class="check-cost">+$${client.plan.priceSelected}/${client.plan.type}</span>
       </div>
-      <div class="line"></div>
-      <div class="check-add-ons-container">
-        <span class="check-add-ons">Online service</span>
-        <span class="check-add-ons-cost">+$2/mo</span>
-      </div>
-    </div>
-    <div class="check-total-container">
-      <span class="check-total">Total (per month)</span>
-      <span class="check-total-cost">+$12/mo</span>
     </div>
   </div> `;
   document.getElementById("sidebar").insertAdjacentHTML("afterend", stepFour);
+  document.getElementById("change-plan").addEventListener("click", () => {
+    removeConfirmBtn();
+    currentTab = 1;
+    setSelectedStep();
+    loadStepTwo();
+  });
+  if (addOnsSelected) {
+    addAddOns();
+  }
+  setTotal();
 }
 
+// Agrega Add-ons en caso de que alguno haya sido seleccionado
+function addAddOns() {
+  let summary = document.getElementById("summary"),
+      lineHTML = document.createElement("div"),
+      addOnHTML;
+  // Agrega línea divisoria entre plan y add-ons
+  lineHTML.classList.add("line")
+  summary.appendChild(lineHTML);
+  for (let i = 0; i < addOnsValues.length; i++) {
+    if(addOnsValues[i][0]) {
+      // Agrega contenedor de add-ons
+      let addOnsContainer = document.createElement("div")
+      addOnsContainer.classList.add("check-add-ons-container");
+      addOnsContainer.innerHTML = "";
+      
+      addOnHTML = `
+        <span class="check-add-ons">${addOnsKeys[i]}</span>
+        <span class="check-add-ons-cost">+$${addOnsValues[i][1]}/${client.plan.type}</span>
+        `;
+        addOnsContainer.innerHTML = addOnsContainer.innerHTML + addOnHTML;
+        summary.appendChild(addOnsContainer);
+        client.plan.priceSelected = Number(client.plan.priceSelected) + Number(addOnsValues[i][1]);
+    }
+  }
+}
 
+// Agrega la suma total a pagar por cliente
+function setTotal() {
+  let totalContainer = document.createElement("div"),
+      totalHTML;
+  totalContainer.classList.add("check-total-container");
+  totalHTML = `
+    <span class="check-total">Total (per ${modeHTML})</span>
+    <span class="check-total-cost">+$${client.plan.priceSelected}/${client.plan.type}</span>
+    `;
+  totalContainer.innerHTML = totalHTML;
+  document.getElementById("current-tab").appendChild(totalContainer);
+}
 
+// ------------------------------
+// ------ Funciones Step 5 ------
+
+function loadStepFive() {
+  document.getElementById("current-tab").remove();
+  stepFive = `
+    <div class="data end-step" id="current-tab">
+      <div class="end-img">
+        <img src="/assets/images/icon-thank-you.svg" alt="">
+      </div>
+      <div class="end-title">
+        <p>Thank you!</p>
+      </div>
+      <div class="end-text">
+        <p>Thanks for confirming your subscription!</p>
+        <p>We hope you have fun using our platform. If you ever need support, please feel free to email us at support@lremgaming.com.</p>
+    </div> `;
+    document.getElementById("footer").remove();
+    document.getElementById("sidebar").insertAdjacentHTML("afterend", stepFive);
+}

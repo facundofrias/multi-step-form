@@ -243,3 +243,26 @@
     color: $purple;
   }
 }
+
+.end-step {
+  padding: 6rem 11px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 500;
+  color: $coolGray;
+}
+
+.end-img {
+  padding-bottom: 1.2rem;
+}
+
+.end-title {
+  padding: 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $marineBlue;
+}
+
+.end-text {
+  line-height: 25px;
+}

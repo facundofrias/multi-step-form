@@ -327,6 +327,29 @@ button {
   color: hsl(243deg, 84%, 71%);
 }
 
+.end-step {
+  padding: 6rem 11px;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 500;
+  color: hsl(231deg, 11%, 63%);
+}
+
+.end-img {
+  padding-bottom: 1.2rem;
+}
+
+.end-title {
+  padding: 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: hsl(213deg, 96%, 18%);
+}
+
+.end-text {
+  line-height: 25px;
+}
+
 .footer {
   width: 100%;
   padding: 1rem;
