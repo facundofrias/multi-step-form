@@ -5,6 +5,8 @@
   display: flex;
   justify-content: end;
   align-items: center;
+  position: absolute;
+  bottom: 0;
 
   &__btn-next{
     padding: 10px;

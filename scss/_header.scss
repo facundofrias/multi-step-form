@@ -1,3 +1,9 @@
+  .steps-container {
+    display: grid;
+    grid-template-areas: 'steps data'
+                          'steps footer';
+  }
+
 .sidebar-container {
   height: 160px;
   background-image: url(../assets/images/bg-sidebar-mobile.svg);

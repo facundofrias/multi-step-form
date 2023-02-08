@@ -47,42 +47,45 @@ let client = new Client(),
   stepOne, stepTwo, stepThree, stepFour, stepFive;
 
 stepTwo = `
-  <div class="data" id="current-tab">              
+  <div class="data plan-selection" id="current-tab">              
     <div class="data__step-info">
       <p class="data__title">Select your plan</p>
       <p class="data__description">You have the option of monthly or yearly billing.</p>
     </div>
-    <div class="data__plan-container" id="arcade-plan">
-      <label class="mode-plan" for="arcade">
-        <img src="./assets/images/icon-arcade.svg" alt="Arcade mode image">
-        <span class="title-plan" id="arcade">Arcade</span>
-        <span class="cost-plan" id="arcade-price">$${client.plan.prices[0]}/mo</span>
-      </label>
-      <input type="radio" name="plan">
-    </div>
-    <div class="data__plan-container">
-      <label class="mode-plan selected-plan" for="advanced">
-        <img src="./assets/images/icon-advanced.svg" alt="Advanced mode image">
-        <span class="title-plan" id="advanced">Advanced</span>
-        <span class="cost-plan" id="advanced-price">$${client.plan.prices[1]}/mo</span>
-      </label>
-      <input type="radio" name="plan" checked>
-    </div>
-    <div class="data__plan-container">
-      <label class="mode-plan" for="pro">
-        <img src="./assets/images/icon-pro.svg" alt="Pro mode image">
-        <span class="title-plan" id="pro">Pro</span>
-        <span class="cost-plan" id="pro-price">$${client.plan.prices[2]}/mo</span>
-      </label>
-      <input type="radio" name="plan">
+    <div class="plans">
+      <div class="data__plan-container" id="arcade-plan">
+        <label class="mode-plan" for="arcade">
+          <img src="./assets/images/icon-arcade.svg" alt="Arcade mode image">
+          <span class="title-plan" id="arcade">Arcade</span>
+          <span class="cost-plan" id="arcade-price">$${client.plan.prices[0]}/mo</span>
+        </label>
+        <input type="radio" name="plan">
+      </div>
+      <div class="data__plan-container">
+        <label class="mode-plan selected-plan" for="advanced">
+          <img src="./assets/images/icon-advanced.svg" alt="Advanced mode image">
+          <span class="title-plan" id="advanced">Advanced</span>
+          <span class="cost-plan" id="advanced-price">$${client.plan.prices[1]}/mo</span>
+        </label>
+        <input type="radio" name="plan" checked>
+      </div>
+      <div class="data__plan-container">
+        <label class="mode-plan" for="pro">
+          <img src="./assets/images/icon-pro.svg" alt="Pro mode image">
+          <span class="title-plan" id="pro">Pro</span>
+          <span class="cost-plan" id="pro-price">$${client.plan.prices[2]}/mo</span>
+        </label>
+        <input type="radio" name="plan">
+      </div>
     </div>
     <div class="data__type-plan-container">
       <span class="type-plan selected-type">Monthly</span>
       <div class="toggle-container">
         <input class="switch" type="checkbox" id="switch">
         <label class="toggle-label" for="switch" id="toggle-plan">Toggle</label>
-    </div>
+      </div>
       <span class="type-plan">Yearly</span>
+    </div>
   </div> `;
   
 // Asignación de precios de Plan
